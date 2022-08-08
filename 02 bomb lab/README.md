@@ -20,7 +20,7 @@ bomb/bomb ans.txt
 
 ### phase_1
 
-```assembly
+``` assembly
 0000000000400ee0 <phase_1>:
    0x0000000000400ee0 <+0>:	sub    $0x8,%rsp
    0x0000000000400ee4 <+4>:	mov    $0x402400,%esi
@@ -365,6 +365,7 @@ int func4(int x, int y, int z) {
 仔细查看反汇编文件，发现其中有一个 `secret_phase` 的函数，仅在 `phase_defused` 中有可能被调用。
 
 ```assembly
+00000000004015c4 <phase_defused>:
    0x00000000004015c4 <+0>:	sub    $0x78,%rsp
    0x00000000004015c8 <+4>:	mov    %fs:0x28,%rax
    0x00000000004015d1 <+13>:	mov    %rax,0x68(%rsp)
