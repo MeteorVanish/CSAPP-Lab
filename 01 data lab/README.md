@@ -1,6 +1,10 @@
 # 01 Data Lab
 
-实现代码见 `datalab-my/bits.c`
+## 文件内容
+
+- 项目文件：`datalab-handout`
+- 相关说明教程：`Instruction`
+- 实现代码：`bits.c`
 
 ## 题目
 
@@ -30,4 +34,4 @@
 
 ## 结果
 
-![Result](Result.png)
+![Result](picture/Result.png)
