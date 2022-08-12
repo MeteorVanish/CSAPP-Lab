@@ -3,7 +3,7 @@
 ## 文件内容
 
 - 项目文件：`bomb` 
-- 相关说明教程：`Instruction`
+- 相关说明教程：`guide`
 - 其余：
     - `bomb.txt` 为反汇编内容
     - `ans.txt` 为最终答案
@@ -34,7 +34,7 @@ bomb/bomb ans.txt
 
 热身关，发现就是简单判断输入字符串是否相同，查看地址 `0x402400` 内容即可。
 
-![phase_1](picture/phase_1.png)
+![phase_1](images/phase_1.png)
 
 **答案：**`Border relations with Canada have never been better.`
 
@@ -117,7 +117,7 @@ bomb/bomb ans.txt
 
 发现在第6行 `scanf` 前有个神秘地址 `0x4025cf`，查看内容发现为输入格式
 
-![phase_3](picture/phase_3.png)
+![phase_3](images/phase_3.png)
 
 也就是本题要求输入两个整数。通过观察第10、11行可知，第一个整数范围要求在0-7，再由下面第13~31行发现是一个 `switch` 的跳转，最后判断第二个数是否与分支内值相等，因此本题共有8种不同正确答案，分别对应8个分支。
 
@@ -249,7 +249,7 @@ int func4(int x, int y, int z) {
 
 这一题汇编代码加入了栈破坏检测，但不影响解题。首先由第8、9行得知这题答案是一个长度为6的字符串，接下来第13~21行依次取每个字符 `ASCII` 码十六进制最后一位作为 `bias`，然后向栈中写入地址 `0x4024b0 + bias`，再与地址 `0x40245e` 的字符串相比较，相同记为正确答案。
 
-![phase_5](picture/phase_5.png)
+![phase_5](images/phase_5.png)
 
 可以看到比较的字符串为 `flyers`，为了向栈中写入相同字符串，输入字符串产生的 `bias` 应为 `9FE567`，也就是说只要输入字符的 `ASCII` 码十六进制最后一位满足条件即可，因此有许多种正确答案。
 
@@ -354,7 +354,7 @@ int func4(int x, int y, int z) {
 - 第33~42行分别用7减去了每个数
 - 后面细节比较多，但发现有个关键地址 `0x6032d0`，发现内容如下：
 
-![phase_6](picture/phase_6.png)
+![phase_6](images/phase_6.png)
 
 可以看到很明显是结构体的存储方式，组成了一个链表，再仔细梳理代码逻辑，发现就是检验输入序号排序是否符合结构体中第一个值降序，那么到这里应该是 `3 4 5 6 1 2`，再考虑之前有用7减，倒推一下答案就出来了。
 
@@ -403,15 +403,15 @@ int func4(int x, int y, int z) {
 
 关键在第5、6行，发现只有输入为6个元素情况下才能进入后续代码，也就是说只有在 `phase_6` 的 `phase_defused` 中有效，然后第10~11行有两个神秘地址，查看一下：
 
-![secret_phase1](picture/secret_phase1.png)
+![secret_phase1](images/secret_phase1.png)
 
 得到输入格式，发现下面一个地址存的是 `phase_4` 输入内容，也就是说 `phase_4` 答案后还要接一个正确字符串才能进入隐藏关，再查看要比较的字符串：
 
-![secret_phase2](picture/secret_phase2.png)
+![secret_phase2](images/secret_phase2.png)
 
 答案便浮出水面，也就是 `phase_4` 答案改成 `7 0 DrEvil` 即可进入隐藏关。
 
-![secret_phase3](picture/secret_phase3.png)
+![secret_phase3](images/secret_phase3.png)
 
 ```assembly
 0000000000401242 <secret_phase>:
@@ -477,7 +477,7 @@ int func4(int x, int y, int z) {
 
 很明显是一个二叉查找树，结构如下：
 
-![BinaryTree](picture/BinaryTree.png)
+![BinaryTree](images/BinaryTree.png)
 
 再观察 `fun7`
 
@@ -511,4 +511,4 @@ int func4(int x, int y, int z) {
 
 ## 结果
 
-![Result](picture/Result.png)
+![Result](images/Result.png)

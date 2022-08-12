@@ -3,7 +3,7 @@
 ## 文件内容
 
 - 项目文件：`datalab-handout`
-- 相关说明教程：`Instruction`
+- 相关说明教程：`guide`
 - 实现代码：`bits.c`
 
 ## 题目
@@ -34,4 +34,4 @@
 
 ## 结果
 
-![Result](picture/Result.png)
+![Result](images/Result.png)
