@@ -3,7 +3,7 @@
 ## 文件内容
 
 - 项目文件：`target1` 
-- 实现文件：`target1_my`
+- 实现文件：`target1-my`
     - 其中 `ans` 文件夹内为最终答案
 
 - 相关说明教程：`guide`
@@ -11,7 +11,7 @@
 ## 如何运行
 
 ``` sh
-# 在 target1_my 目录下
+# 在 target1-my 目录下
 ./hex2raw < ans/ans{1..3}.txt | ./ctarget -q
 ./hex2raw < ans/ans{4,5}.txt | ./rtarget -q
 ```

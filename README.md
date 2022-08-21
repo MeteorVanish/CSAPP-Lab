@@ -5,3 +5,4 @@
 - 01 Data Lab
 - 02 Bomb Lab
 - 03 Attack Lab
+- 05 Cache Lab
