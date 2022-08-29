@@ -33,5 +33,5 @@ make test01 # 01 ~ 16
 
 - [CSAPP-Lab07 Shell Lab 深入解析](https://zhuanlan.zhihu.com/p/492645370)
 
-- [Introduction to CSAPP（二十二）：shell lab - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/151050267)
+- [Introduction to CSAPP（二十二）：shell lab](https://zhuanlan.zhihu.com/p/151050267)
 
