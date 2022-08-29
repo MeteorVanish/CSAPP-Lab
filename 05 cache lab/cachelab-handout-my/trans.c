@@ -210,3 +210,34 @@ void registerFunctions()
     /* Register your solution function */
     registerTransFunction(transpose_submit, transpose_submit_desc); 
 }
+
+int iBlock, jBlock, i, j, reg0, reg1, reg2, reg3, reg4, reg5, reg6, reg7;
+for (iBlock = 0; iBlock < N; iBlock += 8) {
+    for (jBlock = 0; jBlock < M; jBlock += 20) {
+        if (iBlock + 8 <= N && jBlock + 20 <= M) {
+            for (j = 0; j <= 20; ++j) {
+                reg0 = A[iBlock + 0][jBlock + j];
+                reg1 = A[iBlock + 1][jBlock + j];
+                reg2 = A[iBlock + 2][jBlock + j];
+                reg3 = A[iBlock + 3][jBlock + j];
+                reg4 = A[iBlock + 4][jBlock + j];
+                reg5 = A[iBlock + 5][jBlock + j];
+                reg6 = A[iBlock + 6][jBlock + j];
+                reg7 = A[iBlock + 7][jBlock + j];
+                B[jBlock + j][iBlock + 0] = reg0;
+                B[jBlock + j][iBlock + 1] = reg1;
+                B[jBlock + j][iBlock + 2] = reg2;
+                B[jBlock + j][iBlock + 3] = reg3;
+                B[jBlock + j][iBlock + 4] = reg4;
+                B[jBlock + j][iBlock + 5] = reg5;
+                B[jBlock + j][iBlock + 6] = reg6;
+                B[jBlock + j][iBlock + 7] = reg7;
+            }
+        }
+        else {
+            for (i = iBlock; i < min(iBlock + 8, N); ++i)
+                for (j = jBlock; j < min(jBlock + 20, M); ++j)
+                    B[j][i] = A[i][j];
+        }
+    }
+}
