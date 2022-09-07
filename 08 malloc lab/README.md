@@ -13,7 +13,7 @@
 
 ``` sh
 # 在 malloclab-handout_my 目录下
-./mdriver # 仅显示总成绩
+./mdriver    # 仅显示总成绩
 ./mdriver -v # 显示各trace情况与总成绩
 ./mdriver -V # 显示最完整信息
 ```
