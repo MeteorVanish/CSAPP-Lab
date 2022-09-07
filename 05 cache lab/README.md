@@ -12,7 +12,7 @@
 ## 如何运行
 
 ``` sh
-# 在 cachelab-handout_my 目录下
+# 在 cachelab-handout-my 目录下
 ./driver.py # 测试 Part A 和 Part B
 ./test-csim # 仅测试 Part A
 ./test-trans -M [num] -N [num] # 仅测试 Part B
